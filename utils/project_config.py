@@ -26,8 +26,8 @@ class ProjectConfig:
         :return:
         """
         # 环境变量配置的初始化
-        os.environ['http_proxy'] = '127.0.0.1:7890'
-        os.environ['https_proxy'] = '127.0.0.1:7890'
+        os.environ['http_proxy'] = '127.0.0.1:10808'
+        os.environ['https_proxy'] = '127.0.0.1:10808'
 
         # 命令行参数 配置的初始化
         if self._args is None:
