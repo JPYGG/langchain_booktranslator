@@ -23,14 +23,14 @@ class FileWriter:
         :return:
         """
         if file_format.lower() == 'pdf':
-            self.save_book_pdf(out_file_path)
+            return self.save_book_pdf(out_file_path)
         elif file_format.lower() == 'md':
-            self.save_book_markdown(out_file_path)
+            return self.save_book_markdown(out_file_path)
         elif file_format.lower() == 'doc' or file_format.lower() == 'docx':
             pass
         else:
             log.warning('当前的文件格式不支持，项目仅仅支持：PDF，Word，Markdown这三种！')
-            return
+            return ''
 
     def save_book_pdf(self, out_file_path: str = None):
         """
@@ -90,6 +90,8 @@ class FileWriter:
 
             doc.build(pdf_data)
             log.info('pdf文件写入完成！')
+            return out_file_path
+        return ''
 
     def save_book_markdown(self, out_file_path: str = None):
         """
@@ -132,3 +134,5 @@ class FileWriter:
                         md_file.write('\n -----\n\n')  # 除了最后一页，每页的后面都加上一个分页符
 
             log.info('MarkDown文件写入完成！')
+            return out_file_path
+        return ''
