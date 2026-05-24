@@ -1,6 +1,9 @@
+import os.path
+
 import uvicorn
 from fastapi import FastAPI, Body, UploadFile, File
 from pydantic import Field
+from starlette.responses import FileResponse
 
 app = FastAPI()
 
@@ -11,7 +14,12 @@ def test(source_language: str = Body(description='源语言', default='English')
     print(target_language)
     print(input_file.filename)
     print(input_file.size)
-    return 'Hello'
+    # 1. 相对路径
+    output_file_path = '../test/tset.txt'
+    # 2. 绝对路径
+    output_file_path = os.path.dirname(os.getcwd()) + '/test/tset.txt'
+    print(output_file_path)
+    return FileResponse(output_file_path, filename='test2.txt')
 
 if __name__ == '__main__':
     # http://localhost:8000/redoc
